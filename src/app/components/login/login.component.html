@@ -1,0 +1,11 @@
+<div class="login__layout">
+    <div class="login__container">
+        <div class="login__title">Cloudonix</div>
+        <input class="login__input" type="text" [formControl]="key" />
+        <button class="login__button" (click)="login()">LOGIN</button>
+        <div class="login__error">
+            <span *ngIf="hasRequiredError">please enter login key</span>
+            <span *ngIf="hasLoginError">please enter login key</span>
+        </div>
+    </div>
+</div>

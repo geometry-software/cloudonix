@@ -1,0 +1,11 @@
+.form-layout {
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    padding: 20px 0;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
