@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
 import { MatTableModule } from "@angular/material/table"
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { catchError, Observable, of, shareReplay, tap } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Product, productsDisplayedColumns } from '../../models/product.model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AsyncPipe, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { Store } from '@ngrx/store';
+import { getProducts } from '../../store/product.selectors';
+import { ProductActions } from '../../store/product.actions';
 
 @Component({
   selector: 'app-product-list',
@@ -17,9 +16,6 @@ import { ToastrService } from 'ngx-toastr';
     MatTableModule,
     MatIconModule,
     MatButtonModule,
-    MatProgressBarModule,
-    AsyncPipe,
-    NgIf,
     RouterModule
   ],
   templateUrl: './product-list.component.html',
@@ -36,8 +32,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductListComponent implements OnInit {
 
   constructor(
-    private productService: ProductService,
-    private toastr: ToastrService
+    private store: Store
   ) { }
 
   dataSource: Observable<Product[]> = of([])
@@ -45,24 +40,11 @@ export class ProductListComponent implements OnInit {
   expandedElement: Product | undefined
 
   ngOnInit(): void {
-    this.loadData()
+    this.dataSource = this.store.select(getProducts)
   }
 
-  deleteItem(id: string) {
-    this.dataSource = this.productService.deleteProduct(id).pipe(
-      catchError(error => {
-        this.toastr.error('Delete error', error)
-        return []
-      }),
-      tap(() => this.toastr.success('Successfully deleted'))
-    )
-  }
-
-  loadData() {
-    this.dataSource = this.productService.getProducts().pipe(
-      tap(console.log),
-      shareReplay(1)
-    )
+  deleteItem(id: number) {
+    this.store.dispatch(ProductActions.deleteProduct({ id }))
   }
 
 }

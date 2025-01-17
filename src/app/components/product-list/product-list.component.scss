@@ -4,20 +4,20 @@
     flex-direction: column;
 }
 
-.loading {
-    width: 100%;
-}
-
 .table-layout {
     display: flex;
     justify-content: center;
     padding: 0 200px;
+    margin-bottom: 20px;
 }
 
 .table {
     display: block;
     width: 50vw;
     width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 
 .table-actions {

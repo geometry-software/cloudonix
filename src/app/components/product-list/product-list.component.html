@@ -2,9 +2,6 @@
     <button mat-raised-button [routerLink]="['create']">create</button>
 </div>
 <div class="table-layout">
-    <div class="loading">
-        <mat-progress-bar *ngIf="!(dataSource | async)?.length" mode="indeterminate"></mat-progress-bar>
-    </div>
     <table class="table" mat-table [dataSource]="dataSource" multiTemplateDataRows>
 
         <ng-container matColumnDef="index">
@@ -34,10 +31,10 @@
                     <button mat-icon-button [routerLink]="['/products', element.id]">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button (click)="deleteItem(element.id)">
+                    <button mat-icon-button type="button" (click)="deleteItem(element.id); $event.stopPropagation()">
                         <mat-icon>delete</mat-icon>
                     </button>
-                    <button mat-icon-button
+                    <button mat-icon-button type="button"
                         (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
                         @if (expandedElement === element) {
                         <mat-icon>keyboard_arrow_up</mat-icon>
@@ -55,7 +52,7 @@
                     <div class="element-description">
                         <b>Description:</b> {{element.description}}
                         <br>
-                        <b>Profile Type:</b> {{element.profile.type}}
+                        <b>Profile Type:</b> {{element.profile?.type}}
                     </div>
                 </div>
             </td>

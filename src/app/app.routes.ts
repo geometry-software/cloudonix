@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { FormComponent } from './components/form/form.component';
-import { LayoutComponent } from './components/layout/layout.component';
+import { ProductFormComponent } from './components/product-form/form.component';
+import { ProductLayoutComponent } from './components/product-layout/layout.component';
 import { importProvidersFrom } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -18,11 +18,11 @@ export const routes: Routes = [
     },
     {
         path: 'products',
-        providers: [importProvidersFrom(
-
-        )
-        ],
-        component: LayoutComponent,
+        // providers: [importProvidersFrom(
+        //     StoreModule.forFeature('counter', reducer),
+        // )
+        // ],
+        component: ProductLayoutComponent,
         children: [
             {
                 path: '',
@@ -30,7 +30,7 @@ export const routes: Routes = [
             },
             {
                 path: ':id',
-                component: FormComponent
+                component: ProductFormComponent
             }
         ]
     },
