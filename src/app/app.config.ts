@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom, isDevMode, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -9,6 +9,7 @@ import { provideToastr } from 'ngx-toastr';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { storeFeatureKey } from './models/store.model';
+import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { reducer } from './store/product.reducer';
 import { ProductEffects } from './store/product.effects';
 
@@ -28,5 +29,6 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState(storeFeatureKey, reducer),
     provideEffects(ProductEffects),
+    provideEnvironmentNgxMask(),
   ],
 }

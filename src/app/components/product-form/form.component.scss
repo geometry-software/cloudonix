@@ -5,7 +5,11 @@
 
 .form {
     padding: 20px 0;
-    width: 300px;
+    width: 400px;
     display: flex;
     flex-direction: column;
+}
+
+mat-form-field {
+    width: 100%;
 }

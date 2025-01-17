@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { getLoading } from '../../store/product.selectors';
@@ -14,7 +14,8 @@ import { AsyncPipe, NgIf } from '@angular/common';
     NgIf,
   ],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss'
+  styleUrl: './layout.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductLayoutComponent {
 

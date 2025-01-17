@@ -4,7 +4,7 @@ export const productsDisplayedColumns = ['index', 'sku', 'name', 'price', 'expan
 
 export type Product = {
     id?: number | null
-    cost: number | null
+    cost: string | null
     description: string | null
     name: string | null
     profile?: ProductProfile | null
@@ -15,6 +15,7 @@ export type ProductProfile = {
     type: ProfileType | null
     available: boolean | null
     backlog: number | null
+    customControl: CustomControl[]
 }
 
 export enum ProfileType {
@@ -22,4 +23,9 @@ export enum ProfileType {
     EQUIPMENT = "equipment",
     STATIONARY = "stationary",
     PART = "part"
+}
+
+export type CustomControl = {
+    key: string,
+    value: string
 }

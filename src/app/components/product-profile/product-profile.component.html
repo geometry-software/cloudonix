@@ -1,0 +1,36 @@
+<form class="component" [formGroup]="profileGroup">
+
+    <div class="card">
+        <mat-form-field>
+            <mat-label>Toppings</mat-label>
+            <mat-select formControlName="type">
+                @for (type of profileTypes; track type) {
+                <mat-option [value]="type">{{type}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <mat-checkbox class="example-margin" formControlName="available">Available</mat-checkbox>
+        <app-profile-spinbox formControlName="backlog" />
+    </div>
+
+    <div class="card">
+        <div formArrayName="customControl">
+            <div class="key-values-layout" *ngFor="let control of customControl.controls; let i = index"
+                [formGroupName]="i">
+                <mat-form-field>
+                    <input matInput type="text" [readonly]="disable(control)" formControlName="key" placeholder="Key" />
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" formControlName="value" placeholder="Value" />
+                </mat-form-field>
+                <button mat-icon-button type="button" (click)="remove(i)" *ngIf="customControl.controls.length > 1">
+                    <mat-icon>remove</mat-icon>
+                </button>
+                <button mat-icon-button type="button" (click)="add(i)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</form>

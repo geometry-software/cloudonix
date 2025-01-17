@@ -1,0 +1,15 @@
+mat-form-field {
+    width: 100%;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.key-values-layout {
+    display: flex;
+    gap: 10px;
+}

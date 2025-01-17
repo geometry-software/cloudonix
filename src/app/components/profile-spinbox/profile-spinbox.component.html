@@ -1,0 +1,9 @@
+<button mat-icon-button type="button" (click)="decrement()">
+    <mat-icon>remove</mat-icon>
+</button>
+<mat-form-field>
+    <input matInput type="number" [value]="value" (input)="onInput($event)" />
+</mat-form-field>
+<button mat-icon-button type="button" (click)="increment()">
+    <mat-icon>add</mat-icon>
+</button>
